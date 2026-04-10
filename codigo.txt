@@ -1,0 +1,18 @@
+<!-- <a href="{{ route('incidencias.excel') }}" class="btn btn-outline-success">Excel</a>
+            <a href="{{ route('incidencias.pdf') }}" class="btn btn-outline-danger">PDF</a> -->
+
+
+<!-- @foreach($incidencias as $incidencia)
+                <tr>
+                    <td>{{ $incidencia->id }}</td>
+                    <td>{{ $incidencia->sistema->nombre_sistema }}</td>
+                    <td>{{ $incidencia->tipoIncidencia->nombre_tipo }}</td>
+                    <td>{{ $incidencia->area->nombre_area }}</td>
+                    <td>{{ Str::limit($incidencia->descripcion, 50) }}</td>
+                    <td>
+                        @if($incidencia->evidencia)
+                            <a href="{{ asset($incidencia->evidencia) }}" target="_blank" class="btn btn-sm btn-info">Ver</a>
+                        @else
+                            <span class="text-muted">Sin foto</span>
+                        @endif
+                    </td> -->

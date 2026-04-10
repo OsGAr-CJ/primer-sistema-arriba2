@@ -1,0 +1,105 @@
+@extends('adminlte::page')
+
+@section('title', 'Lista de Incedencias CJ')
+
+@section('content_header')
+    <h1 >Ajustes de Incidencias</h1>
+
+    <form action="{{ route('incidencias.update', $incidencia->id) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT') {{-- Esto es vital para que Laravel sepa que es una actualización --}}
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {{-- Sistema --}}
+                            <div class="mb-3">
+                                <label class="block font-medium text-sm text-gray-700">Sistema:</label>
+                                <select name="sistema_id" class="form-select w-full border-gray-300 rounded-md shadow-sm">
+                                    @foreach($sistemas as $sistema)
+                                        <option value="{{ $sistema->id }}" {{ $incidencia->sistema_id == $sistema->id ? 'selected' : '' }}>
+                                            {{ $sistema->nombre_sistema }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                        {{-- Tipo --}}
+                            <div class="mb-3">
+                                <label class="block font-medium text-sm text-gray-700">Tipo:</label>
+                                <select name="tipo_incidencia_id" class="form-select w-full border-gray-300 rounded-md shadow-sm">
+                                    @foreach($tipos as $tipo)
+                                        <option value="{{ $tipo->id }}" {{ $incidencia->tipo_incidencia_id == $tipo->id ? 'selected' : '' }}>
+                                            {{ $tipo->nombre_tipo }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                    
+                    
+                        {{-- Campo de Área (Faltaba este) --}}
+                            <div class="mb-3">
+                                <label class="block font-medium text-sm text-gray-700">Área:</label>
+                                <select name="area_id" class="form-select w-full border-gray-300 rounded-md shadow-sm" required>
+                                    @foreach($areas as $area)
+                                        <option value="{{ $area->id }}" {{ $incidencia->area_id == $area->id ? 'selected' : '' }}>
+                                            {{ $area->nombre_area }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                        {{-- Descripción --}}
+                            <div class="mb-3">
+                                <label class="block font-medium text-sm text-gray-700">Descripción:</label>
+                                <textarea name="descripcion" class="form-control w-full border-gray-300 rounded-md shadow-sm" rows="3">{{ $incidencia->descripcion }}</textarea>
+                            </div>
+
+                        {{-- Observaciones --}}
+                            <div class="mb-3">
+                                <label class="block font-medium text-sm text-gray-700">Observaciones:</label>
+                                <textarea name="observaciones" class="form-control w-full border-gray-300 rounded-md shadow-sm" rows="3">{{ $incidencia->observaciones }}</textarea>
+                            </div>
+
+                        {{-- Evidencia Actual --}}
+                            <div class="mb-3">
+                                <label class="block font-medium text-sm text-gray-700">Evidencia (Dejar vacío para mantener la actual):</label>
+                                @if($incidencia->evidencia)
+                                    <p class="text-sm text-gray-500 mb-2">Archivo actual: {{ $incidencia->evidencia }}</p>
+                                @endif
+                                <input type="file" name="evidencia" class="form-control w-full">
+                            </div>
+
+                            <div class="flex items-center justify-end mt-4">
+                                {{-- Botón de Cancelar/Regresar --}}
+                                    <a href="{{ route('incidencias.index') }}" 
+                                        class="btn btn-primary"
+                                        style="background-color: #2563eb !important; color: white !important; padding: 10px 20px; margin-right: 15px; border-radius: 6px; border: none; font-weight: bold;">
+                                            {{ __('Cancelar') }}
+                                            
+                                    </a>
+
+                                {{-- Tu botón de Actualizar --}}
+                                <button type="submit" 
+                                        class="btn btn-primary" 
+                                        style="background-color: #2563eb !important; color: white !important; padding: 10px 20px; border-radius: 6px; border: none; font-weight: bold;">
+                                    {{ __('Actualizar Incidencia') }}
+                                </button>
+                            </div>
+                </div>
+    </form>
+
+
+@stop
+
+@section('content')
+    <p>Welcome to this beautiful admin panel.</p>
+
+@stop
+
+@section('css')
+    {{-- Add here extra stylesheets --}}
+    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+@stop
+
+@section('js')
+    <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+@stop
