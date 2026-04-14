@@ -1,18 +1,9 @@
 {
   "build": {
     "builder": "NIXPACKS",
-    "buildCommand": "composer install --optimize-autoloader --no-interaction && npm install && npm run build && php artisan migrate --force",
+    "buildCommand": "composer install --optimize-autoloader --no-interaction",
     "nixpacksConfig": {
-      "phpExtensions": [
-        "gd", 
-        "pdo_mysql", 
-        "mbstring", 
-        "zip", 
-        "xml", 
-        "curl", 
-        "exif",
-        "fileinfo"
-      ]
+      "phpExtensions": ["gd", "pdo_mysql", "mbstring", "zip", "xml", "curl", "exif", "fileinfo"]
     }
   }
 }
