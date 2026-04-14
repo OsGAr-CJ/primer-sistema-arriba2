@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Schema;//ajustes necesario para que no haya problema
                                        // con la migracion de B.D
 class AppServiceProvider extends ServiceProvider
@@ -21,5 +22,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Schema::defaultStringLength(191);
+        if ($this->app->environment('production')) {
+        URL::forceScheme('https');
+    }
     }
 }
