@@ -3,7 +3,7 @@
     "builder": "NIXPACKS",
     "buildCommand": "composer install && npm install && npm run build && php artisan migrate --force",
     "nixpacksConfig": {
-      "phpExtensions": ["gd"]
+      "phpExtensions": ["gd", "pdo_mysql", "mbstring", "zip", "xml", "curl"]
     }
   }
 }
